@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    name: {
+    first_name: {
         type: String,
         required: true,
+        trim: true
+    },
+    last_name: {
+        type: String,
         trim: true
     },
     email: {
@@ -16,6 +20,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    salt: {
+        type: String,
+        required: true
+    },
     is_active: {
         type: Boolean,
         default: true
@@ -24,7 +32,7 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    update_at: {
+    updated_at: {
         type: Date,
         default: Date.now
     }
