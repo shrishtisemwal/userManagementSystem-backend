@@ -29,7 +29,7 @@ module.exports.getUserDetails = (payload) => {
 };
 
 // Read - all users
-module.exports.getAllUsers = (payload) => {
+module.exports.getUserList = (payload) => {
   return new Promise((resolve, reject) => {
     User.find(payload)
       .then((result) => {
