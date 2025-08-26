@@ -12,6 +12,10 @@ module.exports.createUserProfile = async (req, res) => {
 
         let params = req.body.payload;
 
+        if(!params.email || !params.first_name || !params.password) {
+            return res.status(406).json({ success: false, message: 'Request data missing!' });
+        }
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(params.email)) {
             return res.status(422).json({ success: false, message: 'Invalid email format.' });
@@ -120,8 +124,6 @@ module.exports.getUserDetail = async (req, res) => {
         }
 
         let params = req.query.payload ? JSON.parse(req.query.payload) : {};
-
-        console.log("params", params)
 
         if (!params.id) {
             return res.status(406).json({ success: false, message: 'User ID is data required' });
